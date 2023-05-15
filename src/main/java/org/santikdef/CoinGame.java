@@ -29,6 +29,9 @@ public class CoinGame {
                 amount = scanner.nextDouble();
 
                 if (amount > 0) {
+                    amount = Utils.round(amount, 2); //Added rounding with scale 2,
+                    // because the number of digits to the right of the decimal point
+                    // in the most real currencies can't be greater than 2
                     isNotCorrectAmount = false;
                 }
             } catch (Exception e) {
@@ -89,11 +92,15 @@ public class CoinGame {
     private void increaseAmount(double bet) {
         amount = amount + (bet * 1.8);
 
+        amount = Utils.round(amount, 2);
+
         System.out.println("The current amount: " + amount);
     }
 
     private void decreaseAmount(double bet) {
         amount = amount - (bet * 0.5);
+
+        amount = Utils.round(amount, 2);
 
         System.out.println("The current amount: " + amount);
     }
@@ -122,7 +129,7 @@ public class CoinGame {
                 bet = scanner.nextDouble();
 
                 if (amount >= bet && bet > 0) {
-                    return bet;
+                    return Utils.round(bet, 2);
                 } else {
                     System.out.println("Incorrect answer. Please try again");
                 }
